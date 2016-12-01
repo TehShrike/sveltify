@@ -20,12 +20,12 @@ module.exports = function transformSvelte(file, options) {
 			const name = base.replace(extension, '')
 
 			const { code, map } = compile(data, {
-				name
+				name,
+				// filename: base,
+				format: 'cjs'
 			})
 
-			const cjsCode = code.replace(/^export default /mg, () => 'module.exports=')
-
-			this.push(cjsCode)
+			this.push(code)
 			this.push('\n//# sourceMappingURL=' + map.toUrl())
 
 			cb()
