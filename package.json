@@ -1,0 +1,25 @@
+{
+  "name": "sveltify",
+  "version": "1.0.0",
+  "description": "Browserify transform for Svelte",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TehShrike/sveltify.git"
+  },
+  "keywords": [
+    "svelte",
+    "browserify",
+    "transform",
+    "browserify-transform"
+  ],
+  "author": "TehShrike",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/TehShrike/sveltify/issues"
+  },
+  "homepage": "https://github.com/TehShrike/sveltify#readme"
+}
