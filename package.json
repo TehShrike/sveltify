@@ -1,6 +1,6 @@
 {
   "name": "sveltify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browserify transform for Svelte",
   "main": "index.js",
   "scripts": {
