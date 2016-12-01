@@ -4,7 +4,7 @@
   "description": "Browserify transform for Svelte",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "rm -f test/build.js && browserify -t [ ./index.js --extensions [.htmlz .svelte .html] ] -d test/test.js -o test/build.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/TehShrike/sveltify/issues"
   },
-  "homepage": "https://github.com/TehShrike/sveltify#readme"
+  "homepage": "https://github.com/TehShrike/sveltify#readme",
+  "devDependencies": {
+    "browserify": "13.1.1"
+  },
+  "dependencies": {
+    "svelte": "^1.0.4",
+    "through2": "2.0.3"
+  }
 }

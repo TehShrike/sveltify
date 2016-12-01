@@ -1,0 +1,15 @@
+<h2>Check yourself</h2>
+<p>{{howdy('bub')}}</p>
+
+<script>
+const howdy = require('./test-dependency')
+
+export default {
+	helpers: {
+		howdy
+	},
+	onrender() {
+		throw new Error('Before you wreck yourself')
+	}
+}
+</script>
