@@ -17,18 +17,21 @@ module.exports = function transformSvelte(file, options) {
 			cb()
 		}, function end(cb) {
 			const base = basename(file)
-			const name = base.replace(extension, '')
+			const name = sanitizeJavaScriptFunctionName(base.replace(extension, ''))
 
-			const { code, map } = compile(data, {
-				name,
-				// filename: base,
-				format: 'cjs'
-			})
+			try {
+				const { code, map } = compile(data, {
+					name,
+					// filename: base,
+					format: 'cjs'
+				})
+				this.push(code)
+				this.push('\n//# sourceMappingURL=' + map.toUrl())
 
-			this.push(code)
-			this.push('\n//# sourceMappingURL=' + map.toUrl())
-
-			cb()
+				cb()
+			} catch (err) {
+				cb(err)
+			}
 		})
 	} else {
 		return through()
@@ -37,4 +40,8 @@ module.exports = function transformSvelte(file, options) {
 
 function exentionIsInList(extension, extensionsArray) {
 	return extensionsArray.indexOf(extension.toLowerCase()) !== -1
+}
+
+function sanitizeJavaScriptFunctionName(text) {
+	return text.replace(/\W/g, '')
 }
