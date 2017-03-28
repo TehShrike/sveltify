@@ -22,7 +22,7 @@ module.exports = function transformSvelte(file, options) {
 			try {
 				const { code, map } = compile(data, {
 					name,
-					// filename: base,
+					filename: base,
 					format: 'cjs'
 				})
 				this.push(code)
