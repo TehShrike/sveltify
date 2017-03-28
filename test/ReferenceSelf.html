@@ -1,0 +1,10 @@
+<ul>
+{{#each items as item}}
+	<li>
+		{{item.label}}
+		{{#if item.children}}
+		<:Self items="{{item.children}}" />
+		{{/if}}
+	</li>
+{{/each}}
+</ul>
