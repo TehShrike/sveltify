@@ -11,7 +11,7 @@ module.exports = function transformSvelte(file, options) {
 
 	const extension = extname(file)
 
-	if (exentionIsInList(extension, extensionsArray)) {
+	if (extensionIsInList(extension, extensionsArray)) {
 		return through(function write(chunk, enc, cb) {
 			data += chunk
 			cb()
@@ -38,7 +38,7 @@ module.exports = function transformSvelte(file, options) {
 	}
 }
 
-function exentionIsInList(extension, extensionsArray) {
+function extensionIsInList(extension, extensionsArray) {
 	return extensionsArray.indexOf(extension.toLowerCase()) !== -1
 }
 
