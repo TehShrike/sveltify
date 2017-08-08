@@ -20,11 +20,12 @@ module.exports = function transformSvelte(file, options) {
 			const name = sanitizeJavaScriptFunctionName(base.replace(extension, ''))
 
 			try {
-				const { code, map } = compile(data, {
+				const svelteOptions = Object.assign({}, options.svelte, {
 					name,
 					filename: base,
 					format: 'cjs'
 				})
+				const { code, map } = compile(data, svelteOptions)
 				this.push(code)
 				this.push('\n//# sourceMappingURL=' + map.toUrl())
 
