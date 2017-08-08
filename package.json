@@ -4,7 +4,7 @@
   "description": "Browserify transform for Svelte",
   "main": "index.js",
   "scripts": {
-    "test": "rm -f test/build.js && browserify -t [ ./index.js --extensions [.htmlz .svelte .html] ] -d test/test.js -o test/build.js"
+    "test": "rm -f test/build.js && browserify -t [ ./index.js --extensions [.htmlz .svelte .html] --svelte [ --dev=true ] ] -d test/test.js -o test/build.js"
   },
   "repository": {
     "type": "git",
