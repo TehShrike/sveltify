@@ -1,10 +1,10 @@
 <ul>
-{{#each items as item}}
+{#each items as item}
 	<li>
-		{{item.label}}
-		{{#if item.children}}
-		<:Self items="{{item.children}}" />
-		{{/if}}
+		{item.label}
+		{#if item.children}
+		<svelte:self items="{item.children}" />
+		{/if}
 	</li>
-{{/each}}
+{/each}
 </ul>
