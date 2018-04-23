@@ -4,6 +4,7 @@ A Browserify transform allowing you to require [Svelte](https://svelte.technolog
 
 Defaults to transforming all `.html` and `.svelte` files.  You can overwrite the transformed extensions with the `extensions` argument.
 
+**If you're using `svelte@2`, you need `sveltify@2`, and vice versa.**
 
 ## Usage
 
