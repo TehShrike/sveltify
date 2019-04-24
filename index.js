@@ -1,5 +1,5 @@
 const { basename, extname } = require(`path`)
-const { compile } = require(`svelte`)
+const { compile } = require(`svelte/compiler`)
 const through = require(`through2`)
 const toPascalCase = require(`just-pascal-case`)
 
@@ -21,7 +21,7 @@ module.exports = function transformSvelte(file, options) {
 			const name = toPascalCase(base.replace(extension, ``))
 
 			try {
-				const svelteOptions = Object.assign({}, options.svelte, {
+				const {_, ...svelteOptions} = Object.assign({}, options.svelte, {
 					name,
 					filename: base,
 					format: `cjs`,

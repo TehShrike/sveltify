@@ -1,10 +1,10 @@
 # sveltify
 
-A Browserify transform allowing you to require [Svelte](https://svelte.technology) templates.
+A Browserify transform allowing you to require [Svelte](https://svelte.dev) templates.
 
 Defaults to transforming all `.html` and `.svelte` files.  You can overwrite the transformed extensions with the `extensions` argument.
 
-**If you're using `svelte@2`, you need `sveltify@2`, and vice versa.**
+**If you're using `svelte@3`, you need `sveltify@3`, and vice versa.**
 
 ## Usage
 
