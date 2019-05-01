@@ -2,14 +2,10 @@
 <p>{howdy('bub')}</p>
 
 <script>
+const {onMount} = require('svelte')
 const howdy = require('./test-dependency')
 
-export default {
-	helpers: {
-		howdy
-	},
-	oncreate() {
-		throw new Error('Before you wreck yourself')
-	}
-}
+onMount(() => {
+	throw new Error('Before you wreck yourself')
+})
 </script>
