@@ -1,30 +1,30 @@
-const Demo = require('./Demo.html').default
-const ThrowingComponent = require('./ThrowingComponent.html').default
-const FileWithDashes = require('./file-with-dashes.html').default
-const ReferenceSelf = require('./ReferenceSelf.html').default
+const Demo = require(`./Demo.html`)
+const ThrowingComponent = require(`./ThrowingComponent.html`)
+const FileWithDashes = require(`./file-with-dashes.html`)
+const ReferenceSelf = require(`./ReferenceSelf.html`)
 
 const demo = new Demo({
-	target: document.querySelector('#demo')
+	target: document.querySelector(`#demo`),
 })
 
-demo.$set({name: 'Bob'})
+demo.$set({ name: `Bob` })
 
 new FileWithDashes({
-	target: document.querySelector('#fileWithDashesComponent')
+	target: document.querySelector(`#fileWithDashesComponent`),
 })
 
 new ReferenceSelf({
-	target: document.querySelector('#referenceSelf'),
+	target: document.querySelector(`#referenceSelf`),
 	props: {
 		items: [{
-			label: 'parent',
+			label: `parent`,
 			children: [{
-				label: 'child'
-			}]
-		}]
-	}
+				label: `child`,
+			}],
+		}],
+	},
 })
 
 new ThrowingComponent({
-	target: document.querySelector('#throwingComponent')
+	target: document.querySelector(`#throwingComponent`),
 })

@@ -2,8 +2,13 @@ const { basename, extname } = require(`path`)
 const { compile } = require(`svelte/compiler`)
 const through = require(`through2`)
 const toPascalCase = require(`just-pascal-case`)
+const MagicString = require(`magic-string`)
 
 const defaultExtensions = [ `.html`, `.svelte` ]
+
+const sourceAndMap = (source, mapUrl) => `${ source }\n//# sourceMappingURL=${ mapUrl }`
+
+const TO_REPLACE = `exports.default = `
 
 module.exports = function transformSvelte(file, options) {
 	let data = ``
@@ -21,15 +26,35 @@ module.exports = function transformSvelte(file, options) {
 			const name = toPascalCase(base.replace(extension, ``))
 
 			try {
-				const {_, ...svelteOptions} = Object.assign({}, options.svelte, {
+				const svelteOptions = Object.assign({}, options.svelte, {
 					name,
 					filename: base,
 					format: `cjs`,
 				})
+				delete svelteOptions._
+
 				const { js } = compile(data, svelteOptions)
-				const { code, map } = js
-				this.push(code)
-				this.push(`\n//# sourceMappingURL=` + map.toUrl())
+				const { code } = js
+
+				const magic = new MagicString(code, {
+					filename: base,
+				})
+
+				const overwriteStart = code.indexOf(TO_REPLACE)
+
+				if (overwriteStart !== -1) {
+					const overwriteEnd = overwriteStart + TO_REPLACE.length
+					magic.overwrite(overwriteStart, overwriteEnd, `module.exports = `)
+				}
+
+				this.push(
+					sourceAndMap(
+						magic.toString(),
+						magic.generateMap({
+							source: file,
+						}).toUrl()
+					)
+				)
 
 				cb()
 			} catch (err) {
